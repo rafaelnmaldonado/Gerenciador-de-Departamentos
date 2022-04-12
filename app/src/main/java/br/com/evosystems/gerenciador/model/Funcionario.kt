@@ -1,7 +1,11 @@
 package br.com.evosystems.gerenciador.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity
 data class Funcionario(
-    val id: Int,
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val nome: String,
     val foto: String? = null,
     val _rg: Int,
