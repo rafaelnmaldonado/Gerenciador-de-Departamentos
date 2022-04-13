@@ -33,11 +33,7 @@ class FormularioFuncionarioActivity : AppCompatActivity() {
 
     private fun configuraBotaoSalvar() {
         val botaoSalvar = binding.activityFormularioFuncionarioBotaoSalvar
-        val dbFunc = Room.databaseBuilder(
-            this,
-            AppDatabase::class.java,
-            "funcionario.db"
-        ).allowMainThreadQueries().build()
+        val dbFunc = AppDatabase.instanciaFunc(this)
         val funcionarioDao = dbFunc.funcionarioDao()
         botaoSalvar.setOnClickListener {
             val funcionarioNovo = criaFuncionario()

@@ -22,23 +22,14 @@ class ListaDepartamentosActivity : AppCompatActivity() {
         setContentView(binding.root)
         configuraRecyclerView()
         configuraFab()
-
-        val dbDep = Room.databaseBuilder(
-            this,
-            AppDatabase::class.java,
-            "departamento.db"
-        ).allowMainThreadQueries().build()
+        val dbDep = AppDatabase.instanciaDep(this)
         val departamentoDao = dbDep.departamentoDao()
         adapter.atualiza(departamentoDao.buscaTodos())
     }
 
     override fun onResume() {
         super.onResume()
-        val dbDep = Room.databaseBuilder(
-            this,
-            AppDatabase::class.java,
-            "departamento.db"
-        ).allowMainThreadQueries().build()
+        val dbDep = AppDatabase.instanciaDep(this)
         val departamentoDao = dbDep.departamentoDao()
         adapter.atualiza(departamentoDao.buscaTodos())
     }

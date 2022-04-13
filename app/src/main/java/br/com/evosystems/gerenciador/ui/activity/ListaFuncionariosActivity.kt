@@ -22,23 +22,14 @@ class ListaFuncionariosActivity : AppCompatActivity() {
         setContentView(binding.root)
         configuraRecyclerView()
         configuraFab()
-
-        val dbFunc = Room.databaseBuilder(
-            this,
-            AppDatabase::class.java,
-            "funcionario.db"
-        ).allowMainThreadQueries().build()
+        val dbFunc = AppDatabase.instanciaFunc(this)
         val funcionarioDao = dbFunc.funcionarioDao()
         adapter.atualiza(funcionarioDao.buscaTodos())
     }
 
     override fun onResume() {
         super.onResume()
-        val dbFunc = Room.databaseBuilder(
-            this,
-            AppDatabase::class.java,
-            "funcionario.db"
-        ).allowMainThreadQueries().build()
+        val dbFunc = AppDatabase.instanciaFunc(this)
         val funcionarioDao = dbFunc.funcionarioDao()
         adapter.atualiza(funcionarioDao.buscaTodos())
     }
