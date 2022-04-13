@@ -3,16 +3,13 @@ package br.com.evosystems.gerenciador.ui.activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.room.Room
 import br.com.evosystems.gerenciador.databinding.ActivityListaDepartamentoActivityBinding
-import br.com.evosystems.gerenciador.dao.DepartamentoDao
 import br.com.evosystems.gerenciador.database.AppDatabase
 import br.com.evosystems.gerenciador.ui.recyclerview.adapter.ListaDepartamentosAdapter
 
 class ListaDepartamentosActivity : AppCompatActivity() {
 
-    private val dao = DepartamentoDao()
-    private val adapter = ListaDepartamentosAdapter(context = this, departamentos = dao.buscaTodos())
+    private val adapter = ListaDepartamentosAdapter(context = this)
     private val binding by lazy {
         ActivityListaDepartamentoActivityBinding.inflate(layoutInflater)
     }
@@ -22,9 +19,6 @@ class ListaDepartamentosActivity : AppCompatActivity() {
         setContentView(binding.root)
         configuraRecyclerView()
         configuraFab()
-        val dbDep = AppDatabase.instanciaDep(this)
-        val departamentoDao = dbDep.departamentoDao()
-        adapter.atualiza(departamentoDao.buscaTodos())
     }
 
     override fun onResume() {
@@ -49,6 +43,15 @@ class ListaDepartamentosActivity : AppCompatActivity() {
     private fun configuraRecyclerView() {
         val recyclerView = binding.activityListaDepartamentosRecyclerView
         recyclerView.adapter = adapter
+        adapter.quandoClicaNoDepartamento = {
+            val intent = Intent(
+                this,
+                DetalhesDepartamentoActivity::class.java
+            ).apply {
+                    putExtra(CHAVE_DEPARTAMENTO, it)
+            }
+            startActivity(intent)
+        }
     }
 
 }

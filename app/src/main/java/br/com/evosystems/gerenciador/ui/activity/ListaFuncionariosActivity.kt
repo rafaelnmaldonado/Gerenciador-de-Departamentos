@@ -3,16 +3,13 @@ package br.com.evosystems.gerenciador.ui.activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.room.Room
 import br.com.evosystems.gerenciador.databinding.ActivityListaFuncionarioActivityBinding
-import br.com.evosystems.gerenciador.dao.FuncionarioDao
 import br.com.evosystems.gerenciador.database.AppDatabase
 import br.com.evosystems.gerenciador.ui.recyclerview.adapter.ListaFuncionariosAdapter
 
 class ListaFuncionariosActivity : AppCompatActivity() {
 
-    private val dao = FuncionarioDao()
-    private val adapter = ListaFuncionariosAdapter(context = this, funcionarios = dao.buscaTodos())
+    private val adapter = ListaFuncionariosAdapter(context = this)
     private val binding by lazy {
         ActivityListaFuncionarioActivityBinding.inflate(layoutInflater)
     }
@@ -20,11 +17,9 @@ class ListaFuncionariosActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        title = "Funcionários cadastrados"
         configuraRecyclerView()
         configuraFab()
-        val dbFunc = AppDatabase.instanciaFunc(this)
-        val funcionarioDao = dbFunc.funcionarioDao()
-        adapter.atualiza(funcionarioDao.buscaTodos())
     }
 
     override fun onResume() {
@@ -49,6 +44,15 @@ class ListaFuncionariosActivity : AppCompatActivity() {
     private fun configuraRecyclerView() {
         val recyclerView = binding.activityListaFuncionariosRecyclerView
         recyclerView.adapter = adapter
+        adapter.quandoClicaNoFuncionario = {
+            val intent = Intent(
+                this,
+                DetalhesFuncionarioActivity::class.java
+            ).apply {
+                putExtra(CHAVE_FUNCIONARIO, it)
+            }
+            startActivity(intent)
+        }
     }
 
 }

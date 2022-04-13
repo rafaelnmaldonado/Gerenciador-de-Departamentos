@@ -11,13 +11,23 @@ import br.com.evosystems.gerenciador.model.Departamento
 
 class ListaDepartamentosAdapter(
     private val context: Context,
-    departamentos: List<Departamento>
+    departamentos: List<Departamento> = emptyList(),
+    var quandoClicaNoDepartamento: (departamentos: Departamento) -> Unit = {}
 ) : RecyclerView.Adapter<ListaDepartamentosAdapter.ViewHolder>() {
 
     private val departamentos = departamentos.toMutableList()
 
-    class ViewHolder(private val binding: DepartamentoItemBinding) :
+    inner class ViewHolder(private val binding: DepartamentoItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
+        private lateinit var departamento: Departamento
+        init {
+            itemView.setOnClickListener {
+                if (::departamento.isInitialized) {
+                    quandoClicaNoDepartamento(departamento)
+                }
+            }
+        }
 
         fun vincula(departamento: Departamento) {
             val id = binding.departamentoItemId

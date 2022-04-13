@@ -7,17 +7,28 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.evosystems.gerenciador.databinding.FuncionarioItemBinding
 import br.com.evosystems.gerenciador.extensions.tentaCarregarImagem
+import br.com.evosystems.gerenciador.model.Departamento
 import br.com.evosystems.gerenciador.model.Funcionario
 
 class ListaFuncionariosAdapter(
     private val context: Context,
-    funcionarios: List<Funcionario>
+    funcionarios: List<Funcionario> = emptyList(),
+    var quandoClicaNoFuncionario: (departamentos: Departamento) -> Unit = {}
 ) : RecyclerView.Adapter<ListaFuncionariosAdapter.ViewHolder>() {
 
     private val funcionarios = funcionarios.toMutableList()
 
-    class ViewHolder(private val binding: FuncionarioItemBinding) :
+    inner class ViewHolder(private val binding: FuncionarioItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
+        private lateinit var departamento: Departamento
+        init {
+            itemView.setOnClickListener {
+                if (::departamento.isInitialized) {
+                    quandoClicaNoFuncionario(departamento)
+                }
+            }
+        }
 
         fun vincula(funcionario: Funcionario) {
             val id = binding.funcionarioItemId
