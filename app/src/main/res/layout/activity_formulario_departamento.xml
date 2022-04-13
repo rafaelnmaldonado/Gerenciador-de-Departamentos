@@ -11,35 +11,6 @@
         android:layout_height="wrap_content"
         tools:context=".ui.activity.FormularioDepartamentoActivity">
 
-        <ImageView
-            android:id="@+id/activity_formulario_departamento_imagem"
-            android:layout_width="0dp"
-            android:layout_height="200dp"
-            android:scaleType="centerCrop"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/imagem_padrao" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/formulario_departamento_textinputlayout_valor"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/activity_formulario_departamento_imagem">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/activity_formulario_departamento_id"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="ID"
-                android:inputType="number" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/formulario_departamento_textinputlayout_nome"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -48,7 +19,7 @@
             android:layout_margin="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/formulario_departamento_textinputlayout_valor">
+            app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/activity_formulario_departamento_nome"
@@ -60,7 +31,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/formulario_departamento_textinputlayout_descricao"
+            android:id="@+id/formulario_departamento_textinputlayout_sigla"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -88,7 +59,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/formulario_departamento_textinputlayout_descricao"
+            app:layout_constraintTop_toBottomOf="@+id/formulario_departamento_textinputlayout_sigla"
             app:layout_constraintVertical_bias="1" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -30,22 +30,10 @@ class ListaDepartamentosAdapter(
         }
 
         fun vincula(departamento: Departamento) {
-            val id = binding.departamentoItemId
-            id.text = departamento.id.toString()
             val nome = binding.departamentoItemNome
             nome.text = departamento.nome
-            val descricao = binding.departamentoItemSigla
-            descricao.text = departamento.sigla
-
-            val visibilidade = if (departamento.imagem != null) {
-                View.VISIBLE
-            } else {
-                View.GONE
-            }
-
-            binding.imageView.visibility = visibilidade
-
-            binding.imageView.tentaCarregarImagem(departamento.imagem)
+            val sigla = binding.departamentoItemSigla
+            sigla.text = departamento.sigla
         }
     }
 

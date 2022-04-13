@@ -9,7 +9,7 @@ import br.com.evosystems.gerenciador.database.dao.FuncionarioDao
 import br.com.evosystems.gerenciador.model.Departamento
 import br.com.evosystems.gerenciador.model.Funcionario
 
-@Database(entities = [Departamento::class, Funcionario::class], version = 1)
+@Database(entities = [Departamento::class, Funcionario::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun departamentoDao(): DepartamentoDao
 

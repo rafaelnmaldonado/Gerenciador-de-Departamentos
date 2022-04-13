@@ -22,13 +22,6 @@ class FormularioDepartamentoActivity : AppCompatActivity() {
         setContentView(binding.root)
         title = "Cadastrar departamento"
         configuraBotaoSalvar()
-        binding.activityFormularioDepartamentoImagem.setOnClickListener {
-            FormularioImagemDialog(this)
-                .mostra(url) { imagem ->
-                    url = imagem
-                    binding.activityFormularioDepartamentoImagem.tentaCarregarImagem(url)
-                }
-        }
     }
 
     private fun configuraBotaoSalvar() {
@@ -43,15 +36,12 @@ class FormularioDepartamentoActivity : AppCompatActivity() {
     }
 
     private fun criaDepartamento(): Departamento {
-        val campoId = binding.activityFormularioDepartamentoId
-        val idEmTexto = campoId.text.toString()
-        val id = idEmTexto.toInt()
         val campoNome = binding.activityFormularioDepartamentoNome
         val nome = campoNome.text.toString()
         val campoSigla = binding.activityFormularioDepartamentoDescricao
         val sigla = campoSigla.text.toString()
 
-        return Departamento(id = id, nome = nome, sigla = sigla, imagem = url)
+        return Departamento(nome = nome, sigla = sigla, imagem = url)
     }
 
 }
