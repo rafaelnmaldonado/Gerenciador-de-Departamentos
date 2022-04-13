@@ -1,16 +1,19 @@
 package br.com.evosystems.gerenciador.model
 
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.parcelize.Parcelize
 
 @Entity
+@Parcelize
 data class Funcionario(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val nome: String,
     val foto: String? = null,
     val _rg: Int,
     val digitoRg: String
-) {
+) : Parcelable {
     var rgFormatado = ""
     val rg: String
         get() {

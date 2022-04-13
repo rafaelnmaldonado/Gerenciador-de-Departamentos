@@ -5,9 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import br.com.evosystems.departamento.databinding.DepartamentoItemBinding
-import br.com.evosystems.gerenciador.model.Departamento
+import br.com.evosystems.gerenciador.databinding.DepartamentoItemBinding
 import br.com.evosystems.gerenciador.extensions.tentaCarregarImagem
+import br.com.evosystems.gerenciador.model.Departamento
 
 class ListaDepartamentosAdapter(
     private val context: Context,

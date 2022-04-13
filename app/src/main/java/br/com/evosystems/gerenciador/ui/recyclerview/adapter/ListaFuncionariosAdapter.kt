@@ -5,9 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import br.com.evosystems.departamento.databinding.FuncionarioItemBinding
-import br.com.evosystems.gerenciador.model.Funcionario
+import br.com.evosystems.gerenciador.databinding.FuncionarioItemBinding
 import br.com.evosystems.gerenciador.extensions.tentaCarregarImagem
+import br.com.evosystems.gerenciador.model.Funcionario
 
 class ListaFuncionariosAdapter(
     private val context: Context,

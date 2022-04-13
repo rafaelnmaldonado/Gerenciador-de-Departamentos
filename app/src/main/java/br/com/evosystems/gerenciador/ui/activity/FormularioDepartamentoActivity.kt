@@ -2,8 +2,9 @@ package br.com.evosystems.gerenciador.ui.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import br.com.evosystems.departamento.databinding.ActivityFormularioDepartamentoBinding
-import br.com.evosystems.gerenciador.dao.DepartamentoDao
+import androidx.room.Room
+import br.com.evosystems.gerenciador.databinding.ActivityFormularioDepartamentoBinding
+import br.com.evosystems.gerenciador.database.AppDatabase
 import br.com.evosystems.gerenciador.extensions.tentaCarregarImagem
 import br.com.evosystems.gerenciador.model.Departamento
 import br.com.evosystems.gerenciador.ui.dialog.FormularioImagemDialog
@@ -32,10 +33,15 @@ class FormularioDepartamentoActivity : AppCompatActivity() {
 
     private fun configuraBotaoSalvar() {
         val botaoSalvar = binding.activityFormularioDepartamentoBotaoSalvar
-        val dao = DepartamentoDao()
+        val dbDep = Room.databaseBuilder(
+            this,
+            AppDatabase::class.java,
+            "departamento.db"
+        ).allowMainThreadQueries().build()
+        val departamentoDao = dbDep.departamentoDao()
         botaoSalvar.setOnClickListener {
             val departamentoNovo = criaDepartamento()
-            dao.adiciona(departamentoNovo)
+            departamentoDao.salva(departamentoNovo)
             finish()
         }
     }

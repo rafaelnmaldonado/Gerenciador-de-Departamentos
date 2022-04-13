@@ -3,7 +3,7 @@ package br.com.evosystems.gerenciador.ui.dialog
 import android.content.Context
 import android.view.LayoutInflater
 import androidx.appcompat.app.AlertDialog
-import br.com.evosystems.departamento.databinding.FormularioImagemBinding
+import br.com.evosystems.gerenciador.databinding.FormularioImagemBinding
 import br.com.evosystems.gerenciador.extensions.tentaCarregarImagem
 
 class FormularioImagemDialog(private val context: Context) {

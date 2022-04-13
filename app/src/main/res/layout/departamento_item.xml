@@ -14,30 +14,28 @@
 
         <TextView
             android:id="@+id/departamento_item_id"
-            android:layout_width="0dp"
+            android:layout_width="22dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat"
             android:maxLines="1"
             android:textAlignment="center"
             android:textSize="14sp"
-            app:layout_constraintWidth_percent="0.08"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/imageView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.1"
             tools:text="1" />
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/departamento_item_nome"
             app:layout_constraintStart_toEndOf="@+id/departamento_item_id"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent="0.1"
-            app:layout_constraintHeight_percent="0.4"
             app:srcCompat="@drawable/departamento_1"
             tools:srcCompat="@drawable/departamento_1" />
 
@@ -45,17 +43,19 @@
             android:id="@+id/departamento_item_sigla"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="10dp"
             android:ellipsize="end"
             android:fontFamily="@font/montserrat_bold"
             android:maxLines="1"
             android:textSize="25sp"
             android:textStyle="bold"
-            app:layout_constraintVertical_bias="0.25"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/imageView"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.25"
             app:layout_constraintWidth_percent="0.75"
-            app:layout_constraintBottom_toBottomOf="parent"
             tools:text="Dev" />
 
         <TextView
@@ -66,11 +66,11 @@
             android:fontFamily="@font/montserrat"
             android:maxLines="1"
             android:textSize="18sp"
-            app:layout_constraintVertical_bias="0.7"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/departamento_item_sigla"
             app:layout_constraintStart_toStartOf="@+id/departamento_item_sigla"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.7"
             tools:text="Desenvolvimento" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,14 +13,7 @@ class DepartamentoDao {
     }
 
     companion object {
-        private val departamento = mutableListOf(
-            Departamento(
-                id = 1,
-                nome = "Desenvolvimento",
-                sigla = "DEV",
-                imagem = "https://cdn-icons-png.flaticon.com/512/181/181548.png"
-            )
-        )
+        private val departamento = mutableListOf<Departamento>()
     }
 
 }

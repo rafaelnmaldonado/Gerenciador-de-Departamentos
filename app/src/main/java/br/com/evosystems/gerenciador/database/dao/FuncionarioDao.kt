@@ -12,5 +12,5 @@ interface FuncionarioDao {
     fun buscaTodos() : List<Funcionario>
 
     @Insert
-    fun salva(funcionario: Funcionario)
+    fun salva(vararg funcionario: Funcionario)
 }

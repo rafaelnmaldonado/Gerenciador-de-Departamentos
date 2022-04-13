@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Nutti Maldonado/AndroidStudioProjects/Gerenciador-de-Departamentos/app/src/main/res/layout/activity_detalhes_departamento.xml" value="0.12552083333333333" />
+        <entry key="..\:/Users/Nutti Maldonado/AndroidStudioProjects/Gerenciador-de-Departamentos/app/src/main/res/layout/activity_detalhes_funcionario.xml" value="0.16304347826086957" />
+        <entry key="..\:/Users/Nutti Maldonado/AndroidStudioProjects/Gerenciador-de-Departamentos/app/src/main/res/layout/departamento_item.xml" value="0.5205128205128206" />
+        <entry key="..\:/Users/Nutti Maldonado/AndroidStudioProjects/Gerenciador-de-Departamentos/app/src/main/res/layout/funcionario_item.xml" value="0.5225225225225225" />
         <entry key="..\:/Users/Nutti Maldonado/AndroidStudioProjects/Gerenciador/app/src/main/res/layout/activity_formulario_departamento.xml" value="0.1816123188405797" />
         <entry key="..\:/Users/Nutti Maldonado/AndroidStudioProjects/Gerenciador/app/src/main/res/layout/activity_formulario_funcionario.xml" value="0.12395833333333334" />
         <entry key="..\:/Users/Nutti Maldonado/AndroidStudioProjects/Gerenciador/app/src/main/res/layout/activity_formulario_gerenciador.xml" value="0.27291666666666664" />

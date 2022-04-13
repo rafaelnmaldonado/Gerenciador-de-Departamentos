@@ -3,8 +3,10 @@ package br.com.evosystems.gerenciador.ui.activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import br.com.evosystems.departamento.databinding.ActivityListaDepartamentoActivityBinding
+import androidx.room.Room
+import br.com.evosystems.gerenciador.databinding.ActivityListaDepartamentoActivityBinding
 import br.com.evosystems.gerenciador.dao.DepartamentoDao
+import br.com.evosystems.gerenciador.database.AppDatabase
 import br.com.evosystems.gerenciador.ui.recyclerview.adapter.ListaDepartamentosAdapter
 
 class ListaDepartamentosActivity : AppCompatActivity() {
@@ -20,11 +22,25 @@ class ListaDepartamentosActivity : AppCompatActivity() {
         setContentView(binding.root)
         configuraRecyclerView()
         configuraFab()
+
+        val dbDep = Room.databaseBuilder(
+            this,
+            AppDatabase::class.java,
+            "departamento.db"
+        ).allowMainThreadQueries().build()
+        val departamentoDao = dbDep.departamentoDao()
+        adapter.atualiza(departamentoDao.buscaTodos())
     }
 
     override fun onResume() {
         super.onResume()
-        adapter.atualiza(dao.buscaTodos())
+        val dbDep = Room.databaseBuilder(
+            this,
+            AppDatabase::class.java,
+            "departamento.db"
+        ).allowMainThreadQueries().build()
+        val departamentoDao = dbDep.departamentoDao()
+        adapter.atualiza(departamentoDao.buscaTodos())
     }
 
     private fun configuraFab() {

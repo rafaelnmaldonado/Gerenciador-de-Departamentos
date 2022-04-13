@@ -12,5 +12,5 @@ interface DepartamentoDao {
     fun buscaTodos() : List<Departamento>
 
     @Insert
-    fun salva(departamento: Departamento)
+    fun salva(vararg departamento: Departamento)
 }
