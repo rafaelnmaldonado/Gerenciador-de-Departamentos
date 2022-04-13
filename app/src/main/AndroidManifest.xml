@@ -12,12 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Orgs">
         <activity android:name=".ui.activity.FormularioFuncionarioActivity" />
-        <activity android:name=".ui.activity.ListaDepartamentosActivity" />
+        <activity android:name=".ui.activity.ListaFuncionariosActivity" />
         <activity android:name=".ui.activity.DetalhesFuncionarioActivity" />
         <activity android:name=".ui.activity.DetalhesDepartamentoActivity" />
         <activity android:name=".ui.activity.FormularioDepartamentoActivity" />
         <activity
-            android:name=".ui.activity.ListaFuncionariosActivity"
+            android:name=".ui.activity.ListaDepartamentosActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
