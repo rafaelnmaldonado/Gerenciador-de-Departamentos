@@ -31,20 +31,14 @@ class ListaFuncionariosAdapter(
         }
 
         fun vincula(funcionario: Funcionario) {
-            val id = binding.funcionarioItemId
-            id.text = funcionario.id.toString()
             val nome = binding.funcionarioItemNome
             nome.text = funcionario.nome
             val rg = binding.funcionarioItemRg
             rg.text = funcionario.rg
 
-            val visibilidade = if (funcionario.foto != null) {
-                View.VISIBLE
-            } else {
-                View.GONE
+            if (funcionario.foto == null) {
+                funcionario.foto = "https://veterans.utah.gov/wp-content/uploads/shutterstock_1677509740.jpg"
             }
-
-            binding.imageView.visibility = visibilidade
 
             binding.imageView.tentaCarregarImagem(funcionario.foto)
         }

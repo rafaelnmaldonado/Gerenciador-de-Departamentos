@@ -10,7 +10,7 @@ import kotlinx.parcelize.Parcelize
 data class Funcionario(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val nome: String,
-    val foto: String? = null,
+    var foto: String? = null,
     val _rg: Int,
     val digitoRg: String
 ) : Parcelable {

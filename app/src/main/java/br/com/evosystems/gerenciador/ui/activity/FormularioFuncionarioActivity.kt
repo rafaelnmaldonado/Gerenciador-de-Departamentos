@@ -43,9 +43,6 @@ class FormularioFuncionarioActivity : AppCompatActivity() {
     }
 
     private fun criaFuncionario(): Funcionario {
-        val campoId = binding.activityFormularioFuncionarioId
-        val idEmTexto = campoId.text.toString()
-        val id = idEmTexto.toInt()
         val campoNome = binding.activityFormularioFuncionarioNome
         val nome = campoNome.text.toString()
         val campoRg = binding.activityFormularioFuncionarioRg
@@ -54,7 +51,7 @@ class FormularioFuncionarioActivity : AppCompatActivity() {
         val campoDigito = binding.activityFormularioFuncionarioDigito
         val digito = campoDigito.text.toString()
 
-        return Funcionario(id = id, nome = nome, _rg = rg, digitoRg = digito, foto = url)
+        return Funcionario(nome = nome, _rg = rg, digitoRg = digito, foto = url)
     }
 
 }
