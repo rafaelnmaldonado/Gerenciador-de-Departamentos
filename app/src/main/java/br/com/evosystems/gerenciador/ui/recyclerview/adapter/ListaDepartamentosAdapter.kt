@@ -12,7 +12,7 @@ import br.com.evosystems.gerenciador.model.Departamento
 class ListaDepartamentosAdapter(
     private val context: Context,
     departamentos: List<Departamento> = emptyList(),
-    var quandoClicaNoDepartamento: (departamentos: Departamento) -> Unit = {}
+    var quandoClicaNoDepartamento: (departamento: Departamento) -> Unit = {}
 ) : RecyclerView.Adapter<ListaDepartamentosAdapter.ViewHolder>() {
 
     private val departamentos = departamentos.toMutableList()

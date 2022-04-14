@@ -2,9 +2,11 @@ package br.com.evosystems.gerenciador.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import br.com.evosystems.gerenciador.databinding.ActivityListaDepartamentoActivityBinding
 import br.com.evosystems.gerenciador.database.AppDatabase
+import br.com.evosystems.gerenciador.model.Departamento
 import br.com.evosystems.gerenciador.ui.recyclerview.adapter.ListaDepartamentosAdapter
 
 class ListaDepartamentosActivity : AppCompatActivity() {
@@ -17,7 +19,7 @@ class ListaDepartamentosActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        configuraRecyclerView()
+        vaiParaFuncionarios()
         configuraFab()
     }
 
@@ -40,15 +42,15 @@ class ListaDepartamentosActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun configuraRecyclerView() {
+    private fun vaiParaFuncionarios() {
         val recyclerView = binding.activityListaDepartamentosRecyclerView
         recyclerView.adapter = adapter
         adapter.quandoClicaNoDepartamento = {
             val intent = Intent(
                 this,
-                DetalhesDepartamentoActivity::class.java
+                ListaFuncionariosActivity::class.java
             ).apply {
-                    putExtra(CHAVE_DEPARTAMENTO, it)
+                putExtra(CHAVE_DEPARTAMENTO, it)
             }
             startActivity(intent)
         }

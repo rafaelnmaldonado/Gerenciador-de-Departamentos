@@ -13,7 +13,7 @@ import br.com.evosystems.gerenciador.model.Funcionario
 class ListaFuncionariosAdapter(
     private val context: Context,
     funcionarios: List<Funcionario> = emptyList(),
-    var quandoClicaNoFuncionario: (departamentos: Departamento) -> Unit = {}
+    var quandoClicaNoFuncionario: (funcionario: Funcionario) -> Unit = {}
 ) : RecyclerView.Adapter<ListaFuncionariosAdapter.ViewHolder>() {
 
     private val funcionarios = funcionarios.toMutableList()
@@ -21,11 +21,11 @@ class ListaFuncionariosAdapter(
     inner class ViewHolder(private val binding: FuncionarioItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        private lateinit var departamento: Departamento
+        private lateinit var funcionario: Funcionario
         init {
             itemView.setOnClickListener {
-                if (::departamento.isInitialized) {
-                    quandoClicaNoFuncionario(departamento)
+                if (::funcionario.isInitialized) {
+                    quandoClicaNoFuncionario(funcionario)
                 }
             }
         }

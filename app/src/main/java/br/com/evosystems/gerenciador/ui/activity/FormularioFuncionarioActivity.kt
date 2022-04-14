@@ -51,7 +51,7 @@ class FormularioFuncionarioActivity : AppCompatActivity() {
         val campoDigito = binding.activityFormularioFuncionarioDigito
         val digito = campoDigito.text.toString()
 
-        return Funcionario(nome = nome, _rg = rg, digitoRg = digito, foto = url)
+        return Funcionario(nome = nome, _rg = rg, digitoRg = digito, foto = url, idDep = 1)
     }
 
 }

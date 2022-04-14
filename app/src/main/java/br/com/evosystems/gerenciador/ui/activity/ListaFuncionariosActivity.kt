@@ -54,5 +54,4 @@ class ListaFuncionariosActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
-
 }

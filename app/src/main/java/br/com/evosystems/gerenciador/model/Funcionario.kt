@@ -9,6 +9,7 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Funcionario(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
+    val idDep: Int,
     val nome: String,
     var foto: String? = null,
     val _rg: Int,
