@@ -2,7 +2,6 @@ package br.com.evosystems.gerenciador.ui.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.room.Room
 import br.com.evosystems.gerenciador.databinding.ActivityFormularioFuncionarioBinding
 import br.com.evosystems.gerenciador.database.AppDatabase
 import br.com.evosystems.gerenciador.extensions.tentaCarregarImagem
@@ -37,7 +36,7 @@ class FormularioFuncionarioActivity : AppCompatActivity() {
         val funcionarioDao = dbFunc.funcionarioDao()
         botaoSalvar.setOnClickListener {
             val funcionarioNovo = criaFuncionario()
-            funcionarioDao.salva(funcionarioNovo)
+            funcionarioDao.salvaFunc(funcionarioNovo)
             finish()
         }
     }

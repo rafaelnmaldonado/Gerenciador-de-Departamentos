@@ -9,7 +9,7 @@ import br.com.evosystems.gerenciador.ui.recyclerview.adapter.ListaFuncionariosAd
 
 class ListaFuncionariosActivity : AppCompatActivity() {
 
-    private val adapter = ListaFuncionariosAdapter(context = this)
+    private val adapter = ListaFuncionariosAdapter(context = this, funcionarios = emptyList())
     private val binding by lazy {
         ActivityListaFuncionarioActivityBinding.inflate(layoutInflater)
     }
@@ -26,7 +26,7 @@ class ListaFuncionariosActivity : AppCompatActivity() {
         super.onResume()
         val dbFunc = AppDatabase.instanciaFunc(this)
         val funcionarioDao = dbFunc.funcionarioDao()
-        adapter.atualiza(funcionarioDao.buscaTodos())
+        adapter.atualiza(funcionarioDao.buscaTodosFunc())
     }
 
     private fun configuraFab() {

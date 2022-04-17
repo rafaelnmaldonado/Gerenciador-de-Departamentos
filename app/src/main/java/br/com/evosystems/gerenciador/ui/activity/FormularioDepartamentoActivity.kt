@@ -2,12 +2,9 @@ package br.com.evosystems.gerenciador.ui.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.room.Room
 import br.com.evosystems.gerenciador.databinding.ActivityFormularioDepartamentoBinding
 import br.com.evosystems.gerenciador.database.AppDatabase
-import br.com.evosystems.gerenciador.extensions.tentaCarregarImagem
 import br.com.evosystems.gerenciador.model.Departamento
-import br.com.evosystems.gerenciador.ui.dialog.FormularioImagemDialog
 
 
 class FormularioDepartamentoActivity : AppCompatActivity() {
@@ -22,6 +19,7 @@ class FormularioDepartamentoActivity : AppCompatActivity() {
         setContentView(binding.root)
         title = "Cadastrar departamento"
         configuraBotaoSalvar()
+
     }
 
     private fun configuraBotaoSalvar() {
@@ -30,7 +28,7 @@ class FormularioDepartamentoActivity : AppCompatActivity() {
         val departamentoDao = dbDep.departamentoDao()
         botaoSalvar.setOnClickListener {
             val departamentoNovo = criaDepartamento()
-            departamentoDao.salva(departamentoNovo)
+            departamentoDao.salvaDep(departamentoNovo)
             finish()
         }
     }

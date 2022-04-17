@@ -22,6 +22,7 @@ class ListaFuncionariosAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         private lateinit var funcionario: Funcionario
+
         init {
             itemView.setOnClickListener {
                 if (::funcionario.isInitialized) {
@@ -31,6 +32,7 @@ class ListaFuncionariosAdapter(
         }
 
         fun vincula(funcionario: Funcionario) {
+            this.funcionario = funcionario
             val nome = binding.funcionarioItemNome
             nome.text = funcionario.nome
             val rg = binding.funcionarioItemRg

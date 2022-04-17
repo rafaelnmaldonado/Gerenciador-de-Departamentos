@@ -6,6 +6,8 @@ import br.com.evosystems.gerenciador.model.Funcionario
 import br.com.evosystems.gerenciador.databinding.ActivityDetalhesFuncionarioBinding
 import br.com.evosystems.gerenciador.extensions.tentaCarregarImagem
 
+private const val TAG = "DetalhesFuncionario"
+
 class DetalhesFuncionarioActivity : AppCompatActivity() {
     private val binding by lazy {
         ActivityDetalhesFuncionarioBinding.inflate(layoutInflater)

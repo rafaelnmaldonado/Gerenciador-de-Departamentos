@@ -9,8 +9,8 @@ import br.com.evosystems.gerenciador.model.Funcionario
 interface FuncionarioDao {
 
     @Query("SELECT * FROM Funcionario")
-    fun buscaTodos() : List<Funcionario>
+    fun buscaTodosFunc() : List<Funcionario>
 
     @Insert
-    fun salva(vararg funcionario: Funcionario)
+    fun salvaFunc(vararg funcionario: Funcionario)
 }

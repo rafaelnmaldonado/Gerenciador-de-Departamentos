@@ -6,11 +6,13 @@
     android:layout_height="90dp"
     android:layout_margin="8dp"
     app:cardCornerRadius="8dp"
-    app:cardElevation="8dp">
+    app:cardElevation="8dp"
+    app:checkedIconTint="#FFFFFF">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context=".ui.activity.ItemDepartamento">
 
         <TextView
             android:id="@+id/departamento_item_sigla"
@@ -44,6 +46,16 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.7"
             tools:text="Desenvolvimento" />
+
+        <Button
+            android:id="@+id/departamento_item_redireciona"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:alpha="0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

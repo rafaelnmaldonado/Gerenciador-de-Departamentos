@@ -9,8 +9,8 @@ import br.com.evosystems.gerenciador.model.Departamento
 interface DepartamentoDao {
 
     @Query("SELECT * FROM Departamento")
-    fun buscaTodos() : List<Departamento>
+    fun buscaTodosDep() : List<Departamento>
 
     @Insert
-    fun salva(vararg departamento: Departamento)
+    fun salvaDep(vararg departamento: Departamento)
 }
