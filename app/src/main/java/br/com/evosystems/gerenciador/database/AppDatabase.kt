@@ -16,20 +16,16 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun funcionarioDao(): FuncionarioDao
 
     companion object {
-        fun instanciaDep(context: Context) : AppDatabase {
-            return Room.databaseBuilder(
+        @Volatile
+        private var db: AppDatabase? = null
+        fun instancia(context: Context) : AppDatabase {
+            return db?: Room.databaseBuilder(
                 context,
                 AppDatabase::class.java,
-                "departamento.db"
-            ).allowMainThreadQueries().build()
-        }
-
-        fun instanciaFunc(context: Context) : AppDatabase {
-            return Room.databaseBuilder(
-                context,
-                AppDatabase::class.java,
-                "funcionario.db"
-            ).allowMainThreadQueries().build()
+                "gerenciador.db"
+            ).allowMainThreadQueries().build().also {
+                db = it
+            }
         }
     }
 }

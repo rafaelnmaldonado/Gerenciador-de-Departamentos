@@ -24,7 +24,7 @@ class FormularioDepartamentoActivity : AppCompatActivity() {
 
     private fun configuraBotaoSalvar() {
         val botaoSalvar = binding.activityFormularioDepartamentoBotaoSalvar
-        val dbDep = AppDatabase.instanciaDep(this)
+        val dbDep = AppDatabase.instancia(this)
         val departamentoDao = dbDep.departamentoDao()
         botaoSalvar.setOnClickListener {
             val departamentoNovo = criaDepartamento()

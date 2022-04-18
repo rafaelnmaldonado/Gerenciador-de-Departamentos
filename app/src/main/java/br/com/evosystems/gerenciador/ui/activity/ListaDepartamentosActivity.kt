@@ -13,17 +13,20 @@ class ListaDepartamentosActivity : AppCompatActivity() {
     private val binding by lazy {
         ActivityListaDepartamentoActivityBinding.inflate(layoutInflater)
     }
+    private val departamentoDao by lazy {
+        AppDatabase.instancia(this).departamentoDao()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        vaiParaFuncionarios()
+        vaiParaFunc()
         configuraFab()
     }
 
     override fun onResume() {
         super.onResume()
-        val dbDep = AppDatabase.instanciaDep(this)
+        val dbDep = AppDatabase.instancia(this)
         val departamentoDao = dbDep.departamentoDao()
         adapter.atualiza(departamentoDao.buscaTodosDep())
     }
@@ -40,15 +43,15 @@ class ListaDepartamentosActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun vaiParaFuncionarios() {
+    private fun vaiParaFunc() {
         val recyclerView = binding.activityListaDepartamentosRecyclerView
         recyclerView.adapter = adapter
-        adapter.vaiParaFunc = {
+        adapter.vaiParaFunc = { departamento ->
             val intent = Intent(
                 this,
                 ListaFuncionariosActivity::class.java
             ).apply {
-                //putExtra(CHAVE_DEPARTAMENTO, it)
+                putExtra(CHAVE_DEPARTAMENTO_ID, departamento.id)
             }
             startActivity(intent)
         }

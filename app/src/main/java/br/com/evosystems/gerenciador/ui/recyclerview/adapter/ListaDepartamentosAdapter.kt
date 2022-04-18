@@ -6,11 +6,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.evosystems.gerenciador.databinding.DepartamentoItemBinding
 import br.com.evosystems.gerenciador.model.Departamento
+import br.com.evosystems.gerenciador.model.Funcionario
 
 class ListaDepartamentosAdapter(
     private val context: Context,
-    departamentos: List<Departamento> = emptyList(),
-    var vaiParaFunc: (departamento: Departamento) -> Unit = {}
+    var vaiParaFunc: (departamento: Departamento) -> Unit = {},
+    departamentos: List<Departamento> = emptyList()
 ) : RecyclerView.Adapter<ListaDepartamentosAdapter.ViewHolder>() {
 
     private val departamentos = departamentos.toMutableList()
@@ -45,7 +46,6 @@ class ListaDepartamentosAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val departamento = departamentos[position]
-        var idDep = position
         holder.vincula(departamento)
     }
 

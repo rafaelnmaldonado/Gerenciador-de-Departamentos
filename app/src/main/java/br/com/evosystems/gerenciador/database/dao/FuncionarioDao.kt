@@ -8,6 +8,8 @@ import br.com.evosystems.gerenciador.model.Funcionario
 @Dao
 interface FuncionarioDao {
 
+
+    //  WHERE idDep = position
     @Query("SELECT * FROM Funcionario")
     fun buscaTodosFunc() : List<Funcionario>
 

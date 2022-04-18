@@ -20,7 +20,7 @@ class DetalhesFuncionarioActivity : AppCompatActivity() {
     }
 
     private fun tentaCarregarFuncionario() {
-        intent.getParcelableExtra<Funcionario>(CHAVE_DEPARTAMENTO)?.let { funcionarioCarregado ->
+        intent.getParcelableExtra<Funcionario>(CHAVE_DEPARTAMENTO_ID)?.let { funcionarioCarregado ->
             preencheCampos(funcionarioCarregado)
         } ?: finish()
     }

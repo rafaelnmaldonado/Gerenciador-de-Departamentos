@@ -1,6 +1,7 @@
 package br.com.evosystems.gerenciador.model
 
 import android.os.Parcelable
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
@@ -9,7 +10,7 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Departamento(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
-    val nome: String,
-    val sigla: String,
-    val imagem: String? = null
+    @ColumnInfo(name="nome") val nome: String,
+    @ColumnInfo(name="sigla") val sigla: String,
+    @ColumnInfo(name="imagem") val imagem: String? = null
 ) : Parcelable
