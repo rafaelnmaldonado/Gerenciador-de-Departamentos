@@ -1,12 +1,14 @@
 package br.com.evosystems.gerenciador.ui.recyclerview.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.evosystems.gerenciador.databinding.DepartamentoItemBinding
 import br.com.evosystems.gerenciador.model.Departamento
 import br.com.evosystems.gerenciador.model.Funcionario
+import br.com.evosystems.gerenciador.ui.activity.CHAVE_DEPARTAMENTO_ID
 
 class ListaDepartamentosAdapter(
     private val context: Context,

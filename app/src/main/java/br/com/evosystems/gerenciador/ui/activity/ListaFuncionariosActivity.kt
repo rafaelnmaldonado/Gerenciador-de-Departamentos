@@ -1,70 +1,76 @@
 package br.com.evosystems.gerenciador.ui.activity
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import br.com.evosystems.gerenciador.databinding.ActivityListaFuncionarioActivityBinding
 import br.com.evosystems.gerenciador.database.AppDatabase
-import br.com.evosystems.gerenciador.extensions.Toast
+import br.com.evosystems.gerenciador.databinding.ActivityListaFuncionarioActivityBinding
+import br.com.evosystems.gerenciador.model.Departamento
+import br.com.evosystems.gerenciador.model.Funcionario
 import br.com.evosystems.gerenciador.ui.recyclerview.adapter.ListaFuncionariosAdapter
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import kotlin.properties.Delegates
 
 class ListaFuncionariosActivity : AppCompatActivity() {
 
-    private val adapter = ListaFuncionariosAdapter(context = this, funcionarios = emptyList())
+    private val adapter = ListaFuncionariosAdapter(context = this)
 
-    var iDPROVISIORIO: String = "Deu errado"
+    private var idDepartamento: Int = 0
+
+    private var nomeDepartamento: String = ""
 
     private val binding by lazy {
         ActivityListaFuncionarioActivityBinding.inflate(layoutInflater)
     }
 
-    private val departamentoDao by lazy {
-        AppDatabase.instancia(this).departamentoDao()
+    private val funcionarioDao by lazy {
+        AppDatabase.instancia(this).funcionarioDao()
     }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         lifecycleScope.launch {
-            launch {
 
-            }
-            intent.getStringExtra("CHAVE_DEPARTAMENTO_ID")?.let { idDep ->
-                departamentoDao.buscaDepPorId(idDep).collect {
-                    Log.i("ListaFuncionarios", "onCreate: $it")
+            intent.getStringExtra(CHAVE_DEPARTAMENTO_NOME)?.let { nomeDep ->
+                nomeDepartamento = nomeDep
+            } ?: Log.i("Usuários", "Nome Departamento: Nulo")
+
+            intent.getStringExtra(CHAVE_DEPARTAMENTO_ID)?.let { idDep ->
+                funcionarioDao.buscaPorIdDep(idDep).collect {
+                    funcionarioDao.buscaPorIdDep(idDep).collect { funcionarios ->
+                        adapter.atualiza(funcionarios)
+                        configuraRecyclerView()
+                        configuraFab(idDep)
+                        Log.i("Usuários", "ID Departamento: $idDep")
+                        Log.i("Usuários", "Usuários no departamento: $it")
+                    }
                 }
-            }
+            } ?: Log.i("Usuários", "ID Departamento: Nulo")
         }
-
-
 
         setContentView(binding.root)
-        title = "Funcionários cadastrados"
-        configuraRecyclerView()
-        configuraFab()
+        title = nomeDepartamento
     }
 
-    override fun onResume() {
-        super.onResume()
-        val dbFunc = AppDatabase.instancia(this)
-        val funcionarioDao = dbFunc.funcionarioDao()
-        adapter.atualiza(funcionarioDao.buscaTodosFunc())
-    }
-
-    private fun configuraFab() {
+    private fun configuraFab(idDep: String) {
         val fab = binding.activityListaFuncionariosFab
         fab.setOnClickListener {
-            vaiParaFormularioFuncionario()
+            vaiParaFormularioFuncionario(idDep)
         }
     }
 
-     private fun vaiParaFormularioFuncionario() {
-        val intent = Intent(this, FormularioFuncionarioActivity::class.java)
+     private fun vaiParaFormularioFuncionario(idDep: String) {
+        val intent = Intent(
+            this,
+            FormularioFuncionarioActivity::class.java
+        ).apply {
+            putExtra(CHAVE_DEPARTAMENTO_ID, idDep)
+        }
         startActivity(intent)
     }
 
@@ -77,6 +83,7 @@ class ListaFuncionariosActivity : AppCompatActivity() {
                 DetalhesFuncionarioActivity::class.java
             ).apply {
                 putExtra(CHAVE_FUNCIONARIO_ID, it)
+                Log.i("DetalhesFuncionário", "Recycler funcionário: $it")
             }
             startActivity(intent)
         }

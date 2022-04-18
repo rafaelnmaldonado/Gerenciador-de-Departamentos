@@ -1,6 +1,7 @@
 package br.com.evosystems.gerenciador.ui.recyclerview.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,11 +10,12 @@ import br.com.evosystems.gerenciador.databinding.FuncionarioItemBinding
 import br.com.evosystems.gerenciador.extensions.tentaCarregarImagem
 import br.com.evosystems.gerenciador.model.Departamento
 import br.com.evosystems.gerenciador.model.Funcionario
+import kotlinx.coroutines.flow.Flow
 
 class ListaFuncionariosAdapter(
     private val context: Context,
-    funcionarios: List<Funcionario> = emptyList(),
-    var quandoClicaNoFuncionario: (funcionario: Funcionario) -> Unit = {}
+    var quandoClicaNoFuncionario: (funcionario: Funcionario) -> Unit = {},
+    funcionarios: List<Funcionario> = emptyList()
 ) : RecyclerView.Adapter<ListaFuncionariosAdapter.ViewHolder>() {
 
     private val funcionarios = funcionarios.toMutableList()

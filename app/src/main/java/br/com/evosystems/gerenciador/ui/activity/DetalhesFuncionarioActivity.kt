@@ -9,6 +9,7 @@ import br.com.evosystems.gerenciador.extensions.tentaCarregarImagem
 private const val TAG = "DetalhesFuncionario"
 
 class DetalhesFuncionarioActivity : AppCompatActivity() {
+
     private val binding by lazy {
         ActivityDetalhesFuncionarioBinding.inflate(layoutInflater)
     }

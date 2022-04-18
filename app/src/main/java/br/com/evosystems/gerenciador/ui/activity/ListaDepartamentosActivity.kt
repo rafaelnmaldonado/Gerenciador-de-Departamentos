@@ -2,6 +2,7 @@ package br.com.evosystems.gerenciador.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import br.com.evosystems.gerenciador.databinding.ActivityListaDepartamentoActivityBinding
 import br.com.evosystems.gerenciador.database.AppDatabase
@@ -10,6 +11,7 @@ import br.com.evosystems.gerenciador.ui.recyclerview.adapter.ListaDepartamentosA
 class ListaDepartamentosActivity : AppCompatActivity() {
 
     private val adapter = ListaDepartamentosAdapter(context = this)
+
     private val binding by lazy {
         ActivityListaDepartamentoActivityBinding.inflate(layoutInflater)
     }
@@ -51,7 +53,9 @@ class ListaDepartamentosActivity : AppCompatActivity() {
                 this,
                 ListaFuncionariosActivity::class.java
             ).apply {
-                putExtra(CHAVE_DEPARTAMENTO_ID, departamento.id)
+                putExtra(CHAVE_DEPARTAMENTO_ID, departamento.id.toString())
+                putExtra(CHAVE_DEPARTAMENTO_NOME, departamento.nome)
+                Log.i("Usuários", "Nome Departamento: ${departamento.nome}")
             }
             startActivity(intent)
         }

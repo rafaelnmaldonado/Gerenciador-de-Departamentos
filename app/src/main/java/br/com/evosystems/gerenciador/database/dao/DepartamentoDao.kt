@@ -14,7 +14,4 @@ interface DepartamentoDao {
 
     @Insert
     fun salvaDep(vararg departamento: Departamento)
-
-    @Query("SELECT * FROM Departamento WHERE id = :idDep")
-    fun buscaDepPorId(idDep: String): Flow<Departamento>
 }
