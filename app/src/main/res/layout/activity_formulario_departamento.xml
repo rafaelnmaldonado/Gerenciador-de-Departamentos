@@ -41,7 +41,7 @@
             app:layout_constraintTop_toBottomOf="@id/formulario_departamento_textinputlayout_nome">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/activity_formulario_departamento_descricao"
+                android:id="@+id/activity_formulario_departamento_sigla"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Sigla"

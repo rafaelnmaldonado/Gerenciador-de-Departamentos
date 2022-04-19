@@ -2,16 +2,20 @@ package br.com.evosystems.gerenciador.ui.activity
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import br.com.evosystems.gerenciador.databinding.ActivityListaDepartamentoActivityBinding
 import br.com.evosystems.gerenciador.database.AppDatabase
 import br.com.evosystems.gerenciador.databinding.ActivityFormularioDepartamentoBinding
 import br.com.evosystems.gerenciador.databinding.DepartamentoItemBinding
+import br.com.evosystems.gerenciador.extensions.Toast
 import br.com.evosystems.gerenciador.model.Departamento
 import br.com.evosystems.gerenciador.model.Funcionario
 import br.com.evosystems.gerenciador.ui.recyclerview.adapter.ListaDepartamentosAdapter
+import java.util.Collections.addAll
 
 class ListaDepartamentosActivity : AppCompatActivity() {
 
@@ -25,41 +29,22 @@ class ListaDepartamentosActivity : AppCompatActivity() {
         AppDatabase.instancia(this).departamentoDao()
     }
 
+    private val funcionarioDao by lazy {
+        AppDatabase.instancia(this).funcionarioDao()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        editaDep()
+        excluiDep()
         vaiParaFunc()
         configuraFab()
     }
 
-    private fun editar(funcionario: Funcionario) {
-        //val botaoSalvar = binding.departamentoItemEditar
-        //val dbFunc = AppDatabase.instancia(this)
-        //val funcionarioDao = dbFunc.funcionarioDao()
-        //botaoSalvar.setOnClickListener {
-            //val funcEditado = salvaEdicaoFunc(funcionario)
-            //funcionarioDao.atualizaFunc(funcEditado)
-            val tipoEdicao = "atualizado"
-            //voltaListaFunc(funcEditado, tipoEdicao)
-            finish()
-        //}
-    }
-
-    private fun excluir(departamento: Departamento) {
-        //val botaoExcluir = binding.departamentoItemExcluir
-        //val dbFunc = AppDatabase.instancia(this)
-        //val funcionarioDao = dbFunc.funcionarioDao()
-        //botaoExcluir.setOnClickListener {
-            val tipoEdicao = "excluído"
-            //funcionarioDao.deletaFunc(funcionario)
-            //voltaListaFunc(funcionario, tipoEdicao)
-            finish()
-        //}
-    }
-
     override fun onResume() {
         super.onResume()
-        adapter.atualiza(departamentoDao.buscaTodosDep())
+        adapter.atualiza()
     }
 
     private fun configuraFab() {
@@ -90,4 +75,37 @@ class ListaDepartamentosActivity : AppCompatActivity() {
         }
     }
 
+    private fun editaDep() {
+        val recyclerView = binding.activityListaDepartamentosRecyclerView
+        recyclerView.adapter = adapter
+        adapter.editaDep = { departamento ->
+            val intent = Intent(
+                this,
+                FormularioDepartamentoActivity::class.java
+            ).apply {
+                putExtra(CHAVE_DEPARTAMENTO, departamento)
+            }
+            startActivity(intent)
+        }
+    }
+
+    private fun excluiDep() {
+        adapter.excluiDep = { departamento ->
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Excluir ${departamento.nome}?")
+            builder.setMessage("Você deseja mesmo excluir o departamento ${departamento.nome} e todos seus funcionários?")
+            builder.setPositiveButton("Sim"){_,_ ->
+                Toast("Excluir")
+                Log.i("Excluir", "Excluir")
+                funcionarioDao.deletaFuncDep(departamento.id)
+                departamentoDao.deletaDep(departamento)
+                adapter.atualiza()
+            }
+            builder.setNegativeButton("Não"){_,_ ->
+                Toast("Não excluir")
+            }
+            val dialog: AlertDialog = builder.create()
+            dialog.show()
+        }
+    }
 }

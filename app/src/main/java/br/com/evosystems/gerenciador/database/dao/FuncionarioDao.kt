@@ -22,4 +22,7 @@ interface FuncionarioDao {
 
     @Delete
     fun deletaFunc(vararg funcionario: Funcionario)
+
+    @Query("DELETE from Funcionario WHERE idDep = :idDep")
+    fun deletaFuncDep(idDep: Int)
 }

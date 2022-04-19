@@ -1,24 +1,30 @@
 package br.com.evosystems.gerenciador.ui.recyclerview.adapter
 
 import android.content.Context
+import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import br.com.evosystems.gerenciador.database.AppDatabase
 import br.com.evosystems.gerenciador.databinding.DepartamentoItemBinding
 import br.com.evosystems.gerenciador.model.Departamento
-import br.com.evosystems.gerenciador.model.Funcionario
-import br.com.evosystems.gerenciador.ui.activity.CHAVE_DEPARTAMENTO_ID
-import br.com.evosystems.gerenciador.ui.activity.ListaDepartamentosActivity
 
 class ListaDepartamentosAdapter(
     private val context: Context,
     var vaiParaFunc: (departamento: Departamento) -> Unit = {},
+    var editaDep: (departamento: Departamento) -> Unit = {},
+    var excluiDep: (departamento: Departamento) -> Unit = {},
     departamentos: List<Departamento> = emptyList()
 ) : RecyclerView.Adapter<ListaDepartamentosAdapter.ViewHolder>() {
 
     private val departamentos = departamentos.toMutableList()
+
+    private val departamentoDao by lazy {
+        AppDatabase.instancia(context).departamentoDao()
+    }
 
     inner class ViewHolder(private val binding: DepartamentoItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -30,12 +36,14 @@ class ListaDepartamentosAdapter(
             botaoSalvar.setOnClickListener {
                 if (::departamento.isInitialized) {
                     Log.i("InfoDepartamento","$departamento")
+                    editaDep(departamento)
                 }
             }
             val botaoExcluir = binding.departamentoItemExcluir
             botaoExcluir.setOnClickListener {
                 if (::departamento.isInitialized) {
                     Log.i("InfoDepartamento","$departamento")
+                    excluiDep(departamento)
                 }
             }
             itemView.setOnClickListener {
@@ -68,9 +76,10 @@ class ListaDepartamentosAdapter(
 
     override fun getItemCount(): Int = departamentos.size
 
-    fun atualiza(departamentos: List<Departamento>) {
+    fun atualiza() {
         this.departamentos.clear()
-        this.departamentos.addAll(departamentos)
+        val depAtualiza = departamentoDao.buscaTodosDep()
+        this.departamentos.addAll(depAtualiza)
         notifyDataSetChanged()
     }
 
