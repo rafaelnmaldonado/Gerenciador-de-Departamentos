@@ -1,11 +1,16 @@
 package br.com.evosystems.gerenciador.ui.activity
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import br.com.evosystems.gerenciador.databinding.ActivityListaDepartamentoActivityBinding
 import br.com.evosystems.gerenciador.database.AppDatabase
+import br.com.evosystems.gerenciador.databinding.ActivityFormularioDepartamentoBinding
+import br.com.evosystems.gerenciador.databinding.DepartamentoItemBinding
+import br.com.evosystems.gerenciador.model.Departamento
+import br.com.evosystems.gerenciador.model.Funcionario
 import br.com.evosystems.gerenciador.ui.recyclerview.adapter.ListaDepartamentosAdapter
 
 class ListaDepartamentosActivity : AppCompatActivity() {
@@ -27,10 +32,33 @@ class ListaDepartamentosActivity : AppCompatActivity() {
         configuraFab()
     }
 
+    private fun editar(funcionario: Funcionario) {
+        //val botaoSalvar = binding.departamentoItemEditar
+        //val dbFunc = AppDatabase.instancia(this)
+        //val funcionarioDao = dbFunc.funcionarioDao()
+        //botaoSalvar.setOnClickListener {
+            //val funcEditado = salvaEdicaoFunc(funcionario)
+            //funcionarioDao.atualizaFunc(funcEditado)
+            val tipoEdicao = "atualizado"
+            //voltaListaFunc(funcEditado, tipoEdicao)
+            finish()
+        //}
+    }
+
+    private fun excluir(departamento: Departamento) {
+        //val botaoExcluir = binding.departamentoItemExcluir
+        //val dbFunc = AppDatabase.instancia(this)
+        //val funcionarioDao = dbFunc.funcionarioDao()
+        //botaoExcluir.setOnClickListener {
+            val tipoEdicao = "excluído"
+            //funcionarioDao.deletaFunc(funcionario)
+            //voltaListaFunc(funcionario, tipoEdicao)
+            finish()
+        //}
+    }
+
     override fun onResume() {
         super.onResume()
-        val dbDep = AppDatabase.instancia(this)
-        val departamentoDao = dbDep.departamentoDao()
         adapter.atualiza(departamentoDao.buscaTodosDep())
     }
 

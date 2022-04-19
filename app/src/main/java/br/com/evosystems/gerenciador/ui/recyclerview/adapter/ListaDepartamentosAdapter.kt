@@ -5,10 +5,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import br.com.evosystems.gerenciador.database.AppDatabase
 import br.com.evosystems.gerenciador.databinding.DepartamentoItemBinding
 import br.com.evosystems.gerenciador.model.Departamento
 import br.com.evosystems.gerenciador.model.Funcionario
 import br.com.evosystems.gerenciador.ui.activity.CHAVE_DEPARTAMENTO_ID
+import br.com.evosystems.gerenciador.ui.activity.ListaDepartamentosActivity
 
 class ListaDepartamentosAdapter(
     private val context: Context,
@@ -24,6 +26,18 @@ class ListaDepartamentosAdapter(
         private lateinit var departamento: Departamento
 
         init {
+            val botaoSalvar = binding.departamentoItemEditar
+            botaoSalvar.setOnClickListener {
+                if (::departamento.isInitialized) {
+                    Log.i("InfoDepartamento","$departamento")
+                }
+            }
+            val botaoExcluir = binding.departamentoItemExcluir
+            botaoExcluir.setOnClickListener {
+                if (::departamento.isInitialized) {
+                    Log.i("InfoDepartamento","$departamento")
+                }
+            }
             itemView.setOnClickListener {
                 if (::departamento.isInitialized) {
                     vaiParaFunc(departamento)
@@ -39,6 +53,7 @@ class ListaDepartamentosAdapter(
             sigla.text = departamento.sigla
         }
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(context)

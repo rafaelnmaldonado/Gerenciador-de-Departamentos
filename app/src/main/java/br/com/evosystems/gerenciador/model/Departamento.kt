@@ -11,6 +11,5 @@ import kotlinx.parcelize.Parcelize
 data class Departamento(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     @ColumnInfo(name="nome") val nome: String,
-    @ColumnInfo(name="sigla") val sigla: String,
-    @ColumnInfo(name="imagem") val imagem: String? = null
+    @ColumnInfo(name="sigla") val sigla: String
 ) : Parcelable

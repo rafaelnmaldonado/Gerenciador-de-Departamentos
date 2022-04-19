@@ -26,7 +26,7 @@
             android:textSize="25sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/departamento_item_editar"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.25"
@@ -47,15 +47,24 @@
             app:layout_constraintVertical_bias="0.7"
             tools:text="Desenvolvimento" />
 
-        <Button
-            android:id="@+id/departamento_item_redireciona"
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/departamento_item_editar"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:alpha="0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/departamento_item_excluir"
+            app:layout_constraintStart_toEndOf="@+id/departamento_item_nome"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/departamento_item_excluir"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/departamento_item_editar"
             app:layout_constraintTop_toTopOf="parent" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

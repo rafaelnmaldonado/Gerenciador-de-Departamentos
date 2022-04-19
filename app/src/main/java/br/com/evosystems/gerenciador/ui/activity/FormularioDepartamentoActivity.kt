@@ -39,7 +39,7 @@ class FormularioDepartamentoActivity : AppCompatActivity() {
         val campoSigla = binding.activityFormularioDepartamentoDescricao
         val sigla = campoSigla.text.toString()
 
-        return Departamento(nome = nome, sigla = sigla, imagem = url)
+        return Departamento(nome = nome, sigla = sigla)
     }
 
 }
