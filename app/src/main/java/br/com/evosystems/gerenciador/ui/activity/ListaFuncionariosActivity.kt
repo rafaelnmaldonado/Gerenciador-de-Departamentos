@@ -7,18 +7,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import br.com.evosystems.gerenciador.database.AppDatabase
 import br.com.evosystems.gerenciador.databinding.ActivityListaFuncionarioActivityBinding
-import br.com.evosystems.gerenciador.model.Departamento
-import br.com.evosystems.gerenciador.model.Funcionario
 import br.com.evosystems.gerenciador.ui.recyclerview.adapter.ListaFuncionariosAdapter
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import kotlin.properties.Delegates
 
 class ListaFuncionariosActivity : AppCompatActivity() {
 
     private val adapter = ListaFuncionariosAdapter(context = this)
-
-    private var idDepartamento: Int = 0
 
     private var nomeDepartamento: String = ""
 
@@ -82,7 +77,7 @@ class ListaFuncionariosActivity : AppCompatActivity() {
                 this,
                 DetalhesFuncionarioActivity::class.java
             ).apply {
-                putExtra(CHAVE_FUNCIONARIO_ID, it)
+                putExtra(CHAVE_FUNCIONARIO, it)
                 Log.i("DetalhesFuncionário", "Recycler funcionário: $it")
             }
             startActivity(intent)

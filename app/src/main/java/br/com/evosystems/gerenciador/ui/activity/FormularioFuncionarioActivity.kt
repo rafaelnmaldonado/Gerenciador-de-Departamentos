@@ -1,11 +1,10 @@
 package br.com.evosystems.gerenciador.ui.activity
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import br.com.evosystems.gerenciador.databinding.ActivityFormularioFuncionarioBinding
 import br.com.evosystems.gerenciador.database.AppDatabase
+import br.com.evosystems.gerenciador.databinding.ActivityFormularioFuncionarioBinding
 import br.com.evosystems.gerenciador.extensions.tentaCarregarImagem
 import br.com.evosystems.gerenciador.model.Funcionario
 import br.com.evosystems.gerenciador.ui.dialog.FormularioImagemDialog
@@ -14,8 +13,6 @@ import kotlinx.coroutines.launch
 
 
 class FormularioFuncionarioActivity : AppCompatActivity() {
-
-    private var idDepartamento: Int = 0
 
     private val funcionarioDao by lazy {
         AppDatabase.instancia(this).funcionarioDao()
