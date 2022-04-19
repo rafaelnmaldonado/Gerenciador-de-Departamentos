@@ -48,6 +48,7 @@ class ListaFuncionariosActivity : AppCompatActivity() {
             } ?: Log.i("Usuários", "ID Departamento: Nulo")
         }
 
+        configuraVoltar()
         setContentView(binding.root)
         title = nomeDepartamento
     }
@@ -56,6 +57,17 @@ class ListaFuncionariosActivity : AppCompatActivity() {
         val fab = binding.activityListaFuncionariosFab
         fab.setOnClickListener {
             vaiParaFormularioFuncionario(idDep)
+        }
+    }
+
+    private fun configuraVoltar() {
+        val volta = binding.activityListaFuncionariosVoltar
+        volta.setOnClickListener {
+            val intent = Intent(
+                this,
+                ListaDepartamentosActivity::class.java
+            )
+            startActivity(intent)
         }
     }
 

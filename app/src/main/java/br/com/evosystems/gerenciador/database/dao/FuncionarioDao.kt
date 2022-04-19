@@ -1,8 +1,6 @@
 package br.com.evosystems.gerenciador.database.dao
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import br.com.evosystems.gerenciador.model.Departamento
 import br.com.evosystems.gerenciador.model.Funcionario
 import kotlinx.coroutines.flow.Flow
@@ -18,4 +16,10 @@ interface FuncionarioDao {
 
     @Query("SELECT * FROM Funcionario WHERE idDep = :idDep")
     fun buscaPorIdDep(idDep: String): Flow<List<Funcionario>>
+
+    @Update
+    fun atualizaFunc(vararg funcionario: Funcionario)
+
+    @Delete
+    fun deletaFunc(vararg funcionario: Funcionario)
 }

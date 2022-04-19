@@ -3,16 +3,25 @@ package br.com.evosystems.gerenciador.ui.activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import br.com.evosystems.gerenciador.R
 import br.com.evosystems.gerenciador.database.AppDatabase
 import br.com.evosystems.gerenciador.model.Funcionario
 import br.com.evosystems.gerenciador.databinding.ActivityFuncionarioDetalhesBinding
 import br.com.evosystems.gerenciador.extensions.tentaCarregarImagem
+import br.com.evosystems.gerenciador.ui.dialog.FormularioImagemDialog
 
 class DetalhesFuncionarioActivity : AppCompatActivity() {
 
+    val context = this
+
     private val binding by lazy {
         ActivityFuncionarioDetalhesBinding.inflate(layoutInflater)
+    }
+
+    private val funcionarioDao by lazy {
+        AppDatabase.instancia(this).funcionarioDao()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,28 +34,81 @@ class DetalhesFuncionarioActivity : AppCompatActivity() {
     private fun tentaCarregarFuncionario() {
         intent.getParcelableExtra<Funcionario>(CHAVE_FUNCIONARIO)?.let { funcionarioCarregado ->
             title = "Detalhes funcionário ${funcionarioCarregado.nome}"
-            setEditarFunc(funcionarioCarregado)
             preencheCampos(funcionarioCarregado)
         } ?: finish()
     }
 
     private fun preencheCampos(funcionarioCarregado: Funcionario) {
-        Log.i("Detalhes", "Tenta preencher")
         with(binding) {
+            Log.i("Detalhes", "$funcionarioCarregado")
+
+            activityFuncionarioDetalhesNome.setText(funcionarioCarregado.nome)
+            activityFuncionarioDetalhesRg.setText(funcionarioCarregado._rg.toString())
+            activityFuncionarioDetalhesDigito.setText(funcionarioCarregado.digitoRg)
+
             activityFuncionarioDetalhesFoto.tentaCarregarImagem(funcionarioCarregado.foto)
-            //activityFuncionarioDetalhesNome.text = funcionarioCarregado.nome
-            //activityFuncionarioDetalhesRg.text = funcionarioCarregado.rg
+
+            binding.activityFuncionarioDetalhesFoto.setOnClickListener {
+                FormularioImagemDialog(context)
+                    .mostra(funcionarioCarregado.foto) { imagem ->
+                        funcionarioCarregado.foto = imagem
+                        binding.activityFuncionarioDetalhesFoto.tentaCarregarImagem(funcionarioCarregado.foto)
+                    }
+            }
+
+            configuraBotaoExcluir(funcionarioCarregado)
+            configuraBotaoSalvar(funcionarioCarregado)
         }
     }
 
-    private fun setEditarFunc(funcionarioCarregado: Funcionario) {
+    private fun configuraBotaoExcluir(funcionario: Funcionario) {
+        val botaoExcluir = binding.activityFuncionarioDetalhesBotaoExcluir
+        val dbFunc = AppDatabase.instancia(this)
+        val funcionarioDao = dbFunc.funcionarioDao()
+        botaoExcluir.setOnClickListener {
+            val tipoEdicao = "excluído"
+            funcionarioDao.deletaFunc(funcionario)
+            voltaListaFunc(funcionario, tipoEdicao)
+            finish()
+        }
+    }
+
+    private fun configuraBotaoSalvar(funcionario: Funcionario) {
+        val botaoSalvar = binding.activityFuncionarioDetalhesBotaoSalvar
+        val dbFunc = AppDatabase.instancia(this)
+        val funcionarioDao = dbFunc.funcionarioDao()
+        botaoSalvar.setOnClickListener {
+            val funcEditado = salvaEdicaoFunc(funcionario)
+            funcionarioDao.atualizaFunc(funcEditado)
+            val tipoEdicao = "editado"
+            voltaListaFunc(funcEditado, tipoEdicao)
+            finish()
+        }
+    }
+
+    private fun salvaEdicaoFunc(funcionario: Funcionario) : Funcionario {
+
+        val campoNome = binding.activityFuncionarioDetalhesNome
+        val nome = campoNome.text.toString()
+        val campoRg = binding.activityFuncionarioDetalhesRg
+        val rgEmTexto = campoRg.text.toString()
+        val rg = rgEmTexto.toInt()
+        val campoDigito = binding.activityFuncionarioDetalhesDigito
+        val digito = campoDigito.text.toString()
+
+        return Funcionario(id = funcionario.id, nome = nome, _rg = rg, digitoRg = digito, foto = funcionario.foto, idDep = funcionario.idDep?.toInt())
+    }
+
+    private fun voltaListaFunc(funcionario: Funcionario, tipo: String) {
         val intent = Intent(
             this,
-            FormularioFuncionarioActivity::class.java
+            ListaFuncionariosActivity::class.java
         ).apply {
-            putExtra(CHAVE_FUNCIONARIO, funcionarioCarregado)
-            Log.i("DetalhesFuncionário", "Recycler funcionário: $funcionarioCarregado")
+            val nomeDep = "${funcionario.nome} $tipo"
+            putExtra(CHAVE_DEPARTAMENTO_ID, funcionario.idDep.toString())
+            putExtra(CHAVE_DEPARTAMENTO_NOME, nomeDep)
+            Log.i("NomeFuncEditado", "Funcionário: $funcionario")
         }
-        //startActivity(intent)
+        startActivity(intent)
     }
 }

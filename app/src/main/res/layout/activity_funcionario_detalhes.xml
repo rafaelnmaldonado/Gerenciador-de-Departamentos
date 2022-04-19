@@ -36,7 +36,6 @@
                 android:id="@+id/activity_funcionario_detalhes_nome"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="$funcionarioCarregado.nome"
                 android:hint="Nome"
                 android:inputType="text" />
 
@@ -83,26 +82,26 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/activity_formulario_funcionario_botao_excluir"
+            android:id="@+id/activity_funcionario_detalhes_botao_excluir"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:text="Excluir"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/activity_formulario_funcionario_botao_salvar"
+            app:layout_constraintEnd_toStartOf="@+id/activity_funcionario_detalhes_botao_salvar"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/detalhes_funcionario_textinputlayout_rg"
             app:layout_constraintVertical_bias="1" />
 
         <Button
-            android:id="@+id/activity_formulario_funcionario_botao_salvar"
+            android:id="@+id/activity_funcionario_detalhes_botao_salvar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:text="Salvar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/activity_formulario_funcionario_botao_excluir"
+            app:layout_constraintStart_toEndOf="@+id/activity_funcionario_detalhes_botao_excluir"
             app:layout_constraintTop_toBottomOf="@+id/detalhes_funcionario_textinputlayout_rg"
             app:layout_constraintVertical_bias="1" />
 
