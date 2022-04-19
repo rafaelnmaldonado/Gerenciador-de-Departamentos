@@ -3,13 +3,12 @@ package br.com.evosystems.gerenciador.ui.activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import br.com.evosystems.gerenciador.R
 import br.com.evosystems.gerenciador.database.AppDatabase
-import br.com.evosystems.gerenciador.model.Funcionario
 import br.com.evosystems.gerenciador.databinding.ActivityFuncionarioDetalhesBinding
+import br.com.evosystems.gerenciador.extensions.Toast
 import br.com.evosystems.gerenciador.extensions.tentaCarregarImagem
+import br.com.evosystems.gerenciador.model.Funcionario
 import br.com.evosystems.gerenciador.ui.dialog.FormularioImagemDialog
 
 class DetalhesFuncionarioActivity : AppCompatActivity() {
@@ -20,8 +19,8 @@ class DetalhesFuncionarioActivity : AppCompatActivity() {
         ActivityFuncionarioDetalhesBinding.inflate(layoutInflater)
     }
 
-    private val funcionarioDao by lazy {
-        AppDatabase.instancia(this).funcionarioDao()
+    private val departamentoDao by lazy {
+        AppDatabase.instancia(this).departamentoDao()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -80,7 +79,7 @@ class DetalhesFuncionarioActivity : AppCompatActivity() {
         botaoSalvar.setOnClickListener {
             val funcEditado = salvaEdicaoFunc(funcionario)
             funcionarioDao.atualizaFunc(funcEditado)
-            val tipoEdicao = "editado"
+            val tipoEdicao = "atualizado"
             voltaListaFunc(funcEditado, tipoEdicao)
             finish()
         }
@@ -100,11 +99,14 @@ class DetalhesFuncionarioActivity : AppCompatActivity() {
     }
 
     private fun voltaListaFunc(funcionario: Funcionario, tipo: String) {
+
+        val nomeDep = departamentoDao.buscaNomeDep(funcionario.idDep!!)
+
         val intent = Intent(
             this,
             ListaFuncionariosActivity::class.java
         ).apply {
-            val nomeDep = "${funcionario.nome} $tipo"
+            Toast("Funcionário ${funcionario.nome} $tipo")
             putExtra(CHAVE_DEPARTAMENTO_ID, funcionario.idDep.toString())
             putExtra(CHAVE_DEPARTAMENTO_NOME, nomeDep)
             Log.i("NomeFuncEditado", "Funcionário: $funcionario")

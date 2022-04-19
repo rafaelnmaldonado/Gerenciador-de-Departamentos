@@ -15,6 +15,7 @@ class ListaDepartamentosActivity : AppCompatActivity() {
     private val binding by lazy {
         ActivityListaDepartamentoActivityBinding.inflate(layoutInflater)
     }
+
     private val departamentoDao by lazy {
         AppDatabase.instancia(this).departamentoDao()
     }
