@@ -65,7 +65,7 @@ class DetalhesFuncionarioActivity : AppCompatActivity() {
         val dbFunc = AppDatabase.instancia(this)
         val funcionarioDao = dbFunc.funcionarioDao()
         botaoExcluir.setOnClickListener {
-            val tipoEdicao = "excluído"
+            val tipoEdicao = "excluído(a)"
             funcionarioDao.deletaFunc(funcionario)
             voltaListaFunc(funcionario, tipoEdicao)
             finish()
@@ -79,7 +79,7 @@ class DetalhesFuncionarioActivity : AppCompatActivity() {
         botaoSalvar.setOnClickListener {
             val funcEditado = salvaEdicaoFunc(funcionario)
             funcionarioDao.atualizaFunc(funcEditado)
-            val tipoEdicao = "atualizado"
+            val tipoEdicao = "atualizado(a)"
             voltaListaFunc(funcEditado, tipoEdicao)
             finish()
         }
@@ -106,7 +106,7 @@ class DetalhesFuncionarioActivity : AppCompatActivity() {
             this,
             ListaFuncionariosActivity::class.java
         ).apply {
-            Toast("Funcionário ${funcionario.nome} $tipo")
+            Toast("Funcionário(a) ${funcionario.nome} $tipo")
             putExtra(CHAVE_DEPARTAMENTO_ID, funcionario.idDep.toString())
             putExtra(CHAVE_DEPARTAMENTO_NOME, nomeDep)
             Log.i("NomeFuncEditado", "Funcionário: $funcionario")

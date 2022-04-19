@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface DepartamentoDao {
 
-    @Query("SELECT * FROM Departamento ORDER BY id DESC")
+    @Query("SELECT * FROM Departamento ORDER BY sigla, id")
     fun buscaTodosDep() : List<Departamento>
 
     @Query("SELECT nome FROM departamento WHERE id = :idDep")

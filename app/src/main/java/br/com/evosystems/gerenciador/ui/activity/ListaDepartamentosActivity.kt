@@ -95,14 +95,13 @@ class ListaDepartamentosActivity : AppCompatActivity() {
             builder.setTitle("Excluir ${departamento.nome}?")
             builder.setMessage("Você deseja mesmo excluir o departamento ${departamento.nome} e todos seus funcionários?")
             builder.setPositiveButton("Sim"){_,_ ->
-                Toast("Excluir")
+                Toast("${departamento.nome} excluído")
                 Log.i("Excluir", "Excluir")
                 funcionarioDao.deletaFuncDep(departamento.id)
                 departamentoDao.deletaDep(departamento)
                 adapter.atualiza()
             }
             builder.setNegativeButton("Não"){_,_ ->
-                Toast("Não excluir")
             }
             val dialog: AlertDialog = builder.create()
             dialog.show()
