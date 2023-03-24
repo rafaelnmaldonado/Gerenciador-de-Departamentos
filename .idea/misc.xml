@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Nutti Maldonado/AndroidStudioProjects/Gerenciador-de-Departamentos/app/src/main/res/layout/activity_detalhes_departamento.xml" value="0.12552083333333333" />
+        <entry key="..\:/Users/Nutti Maldonado/AndroidStudioProjects/Gerenciador-de-Departamentos/app/src/main/res/layout/activity_detalhes_funcionario.xml" value="0.16304347826086957" />
+        <entry key="..\:/Users/Nutti Maldonado/AndroidStudioProjects/Gerenciador-de-Departamentos/app/src/main/res/layout/activity_formulario_departamento.xml" value="0.1838768115942029" />
+        <entry key="..\:/Users/Nutti Maldonado/AndroidStudioProjects/Gerenciador-de-Departamentos/app/src/main/res/layout/activity_formulario_funcionario.xml" value="0.1838768115942029" />
+        <entry key="..\:/Users/Nutti Maldonado/AndroidStudioProjects/Gerenciador-de-Departamentos/app/src/main/res/layout/activity_funcionario_detalhes.xml" value="0.18206521739130435" />
+        <entry key="..\:/Users/Nutti Maldonado/AndroidStudioProjects/Gerenciador-de-Departamentos/app/src/main/res/layout/activity_lista_departamento_activity.xml" value="0.15896739130434784" />
+        <entry key="..\:/Users/Nutti Maldonado/AndroidStudioProjects/Gerenciador-de-Departamentos/app/src/main/res/layout/activity_lista_funcionario_activity.xml" value="0.11018518518518519" />
+        <entry key="..\:/Users/Nutti Maldonado/AndroidStudioProjects/Gerenciador-de-Departamentos/app/src/main/res/layout/departamento_item.xml" value="0.14895833333333333" />
+        <entry key="..\:/Users/Nutti Maldonado/AndroidStudioProjects/Gerenciador-de-Departamentos/app/src/main/res/layout/formulario_imagem.xml" value="0.15896739130434784" />
+        <entry key="..\:/Users/Nutti Maldonado/AndroidStudioProjects/Gerenciador-de-Departamentos/app/src/main/res/layout/funcionario_item.xml" value="0.33" />
+        <entry key="..\:/Users/Nutti Maldonado/AndroidStudioProjects/Gerenciador/app/src/main/res/layout/activity_formulario_departamento.xml" value="0.1816123188405797" />
+        <entry key="..\:/Users/Nutti Maldonado/AndroidStudioProjects/Gerenciador/app/src/main/res/layout/activity_formulario_funcionario.xml" value="0.12395833333333334" />
+        <entry key="..\:/Users/Nutti Maldonado/AndroidStudioProjects/Gerenciador/app/src/main/res/layout/activity_formulario_gerenciador.xml" value="0.27291666666666664" />
+        <entry key="..\:/Users/Nutti Maldonado/AndroidStudioProjects/Gerenciador/app/src/main/res/layout/activity_funcionario_departamento.xml" value="0.12395833333333334" />
+        <entry key="..\:/Users/Nutti Maldonado/AndroidStudioProjects/Gerenciador/app/src/main/res/layout/activity_lista_departamento_activity.xml" value="0.1816123188405797" />
+        <entry key="..\:/Users/Nutti Maldonado/AndroidStudioProjects/Gerenciador/app/src/main/res/layout/activity_lista_funcionario_activity.xml" value="0.12395833333333334" />
+        <entry key="..\:/Users/Nutti Maldonado/AndroidStudioProjects/Gerenciador/app/src/main/res/layout/activity_lista_gerenciador_activity.xml" value="0.12395833333333334" />
+        <entry key="..\:/Users/Nutti Maldonado/AndroidStudioProjects/Gerenciador/app/src/main/res/layout/departamento_item.xml" value="0.27291666666666664" />
+        <entry key="..\:/Users/Nutti Maldonado/AndroidStudioProjects/Gerenciador/app/src/main/res/layout/formulario_imagem.xml" value="0.27291666666666664" />
+        <entry key="..\:/Users/Nutti Maldonado/AndroidStudioProjects/Gerenciador/app/src/main/res/layout/funcionario_item.xml" value="0.75" />
+        <entry key="..\:/Users/Nutti Maldonado/AndroidStudioProjects/Gerenciador/app/src/main/res/layout/produto_item.xml" value="0.27291666666666664" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.4984375" />
+      </ProjectState>
+    </option>
+  </component>
+</project>
